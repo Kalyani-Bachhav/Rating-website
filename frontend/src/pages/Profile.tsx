@@ -90,32 +90,32 @@ export const Profile: React.FC = () => {
   };
 
   const roleColors: Record<string, string> = {
-    ADMIN: 'bg-purple-500/15 text-purple-300 border-purple-500/30',
-    USER: 'bg-brand-500/15 text-brand-300 border-brand-500/30',
-    STORE_OWNER: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30',
+    ADMIN: 'bg-neo-accent text-black border-black',
+    USER: 'bg-neo-muted text-black border-black',
+    STORE_OWNER: 'bg-neo-secondary text-black border-black',
   };
 
   const inputClass =
-    'w-full px-4 py-2.5 rounded-xl bg-dark-900/60 border border-dark-800/80 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors placeholder:text-dark-500';
+    'w-full px-4 py-2.5 border-4 border-black bg-white text-black font-bold uppercase tracking-wider text-sm focus:outline-none focus:bg-neo-secondary focus:shadow-neo-sm placeholder:text-black/40';
 
   return (
-    <div className="space-y-10 max-w-2xl mx-auto">
+    <div className="space-y-10 max-w-2xl mx-auto text-black">
       {/* Header */}
       <div>
-        <h2 className="text-3xl font-extrabold tracking-tight text-white m-0">My Profile</h2>
-        <p className="text-sm text-dark-300 mt-1">Manage your account information and security settings</p>
+        <h2 className="text-4xl font-black uppercase tracking-tight text-black m-0">My Profile</h2>
+        <p className="text-sm font-bold text-black/70 mt-1 uppercase tracking-wider">Manage your account information and security settings</p>
       </div>
 
       {/* Profile avatar card */}
-      <div className="p-6 rounded-2xl glass-card flex flex-col sm:flex-row items-center sm:items-start gap-5">
-        <div className="h-20 w-20 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center font-black text-white text-3xl uppercase shadow-xl shadow-brand-900/30 shrink-0">
+      <div className="p-6 border-4 border-black bg-white shadow-neo-sm flex flex-col sm:flex-row items-center sm:items-start gap-5">
+        <div className="h-20 w-20 border-4 border-black bg-neo-muted flex items-center justify-center font-black text-black text-3xl uppercase shadow-neo-sm shrink-0">
           {user?.name?.charAt(0) ?? '?'}
         </div>
         <div className="text-center sm:text-left">
-          <h3 className="text-xl font-bold text-white m-0">{user?.name}</h3>
-          <p className="text-sm text-dark-400 mt-1">{user?.email}</p>
+          <h3 className="text-xl font-black uppercase tracking-tight text-black m-0">{user?.name}</h3>
+          <p className="text-sm font-bold text-black/70 mt-1">{user?.email}</p>
           <span
-            className={`inline-block mt-2 text-[10px] font-bold px-2.5 py-1 rounded-lg border uppercase tracking-widest ${
+            className={`inline-block mt-2 text-[10px] font-black px-2.5 py-1 border-2 uppercase tracking-widest ${
               roleColors[user?.role ?? 'USER']
             }`}
           >
@@ -125,51 +125,51 @@ export const Profile: React.FC = () => {
       </div>
 
       {/* Account Info Form */}
-      <div className="p-6 rounded-2xl glass-panel space-y-5">
-        <h3 className="text-base font-bold text-white flex items-center gap-2 m-0">
-          <User className="h-4 w-4 text-brand-500" /> Account Information
+      <div className="p-6 border-4 border-black bg-white shadow-neo-md space-y-5">
+        <h3 className="text-base font-black uppercase tracking-wider text-black flex items-center gap-2 m-0">
+          <User className="h-5 w-5 text-black stroke-[2.5px]" /> Account Information
         </h3>
 
         <form onSubmit={profileForm.handleSubmit(onProfileSubmit)} className="space-y-4">
           {/* Email (read-only) */}
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-dark-300 flex items-center gap-1.5">
-              <Mail className="h-3.5 w-3.5" /> Email Address
+            <label className="text-xs font-black text-black uppercase tracking-widest flex items-center gap-1.5">
+              <Mail className="h-4 w-4 stroke-[2.5px]" /> Email Address
             </label>
             <input
               type="email"
               value={user?.email ?? ''}
               readOnly
-              className="w-full px-4 py-2.5 rounded-xl bg-dark-950/60 border border-dark-800/40 text-dark-400 text-sm cursor-not-allowed"
+              className="w-full px-4 py-2.5 border-4 border-black bg-black/5 text-black/60 font-bold uppercase tracking-wider text-sm cursor-not-allowed focus:outline-none"
             />
-            <p className="text-[10px] text-dark-500">Email cannot be changed</p>
+            <p className="text-[10px] font-bold text-black/60 uppercase tracking-wider">Email cannot be changed</p>
           </div>
 
           {/* Full Name */}
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-dark-300 flex items-center gap-1.5">
-              <User className="h-3.5 w-3.5" /> Full Name
+            <label className="text-xs font-black text-black uppercase tracking-widest flex items-center gap-1.5">
+              <User className="h-4 w-4 stroke-[2.5px]" /> Full Name
             </label>
             <input
               type="text"
               className={inputClass}
               {...profileForm.register('name', {
                 required: 'Name is required',
-                minLength: { value: 20, message: 'Name must be at least 20 characters' },
+                minLength: { value: 2, message: 'Name must be at least 2 characters' },
                 maxLength: { value: 60, message: 'Name cannot exceed 60 characters' },
               })}
             />
             {profileForm.formState.errors.name && (
-              <p className="text-[10px] text-red-400 font-medium">
+              <span className="text-xs text-white bg-black font-black uppercase tracking-wider px-2 py-1 inline-block mt-1">
                 {profileForm.formState.errors.name.message}
-              </p>
+              </span>
             )}
           </div>
 
           {/* Address */}
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-dark-300 flex items-center gap-1.5">
-              <MapPin className="h-3.5 w-3.5" /> Address
+            <label className="text-xs font-black text-black uppercase tracking-widest flex items-center gap-1.5">
+              <MapPin className="h-4 w-4 stroke-[2.5px]" /> Address
             </label>
             <textarea
               rows={3}
@@ -180,36 +180,36 @@ export const Profile: React.FC = () => {
               })}
             />
             {profileForm.formState.errors.address && (
-              <p className="text-[10px] text-red-400 font-medium">
+              <span className="text-xs text-white bg-black font-black uppercase tracking-wider px-2 py-1 inline-block mt-1">
                 {profileForm.formState.errors.address.message}
-              </p>
+              </span>
             )}
           </div>
 
           {/* Role (read-only) */}
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-dark-300 flex items-center gap-1.5">
-              <Shield className="h-3.5 w-3.5" /> Account Role
+            <label className="text-xs font-black text-black uppercase tracking-widest flex items-center gap-1.5">
+              <Shield className="h-4 w-4 stroke-[2.5px]" /> Account Role
             </label>
             <input
               type="text"
               value={user?.role?.replace('_', ' ') ?? ''}
               readOnly
-              className="w-full px-4 py-2.5 rounded-xl bg-dark-950/60 border border-dark-800/40 text-dark-400 text-sm cursor-not-allowed"
+              className="w-full px-4 py-2.5 border-4 border-black bg-black/5 text-black/60 font-bold uppercase tracking-wider text-sm cursor-not-allowed focus:outline-none"
             />
           </div>
 
           <button
             type="submit"
             disabled={updateProfileMutation.isPending || profileSaved}
-            className="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 disabled:bg-brand-600/50 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer disabled:cursor-not-allowed"
+            className="w-full py-3 border-4 border-black bg-neo-secondary hover:bg-neo-accent disabled:bg-neo-secondary/50 text-black font-black uppercase tracking-wider text-sm transition-all duration-100 shadow-neo-sm active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer flex items-center justify-center gap-2 mt-4"
           >
             {updateProfileMutation.isPending ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <Loader2 className="h-4 w-4 stroke-[3px] animate-spin" />
             ) : profileSaved ? (
-              <CheckCircle className="h-4 w-4 text-green-300" />
+              <CheckCircle className="h-4 w-4 stroke-[3px]" />
             ) : (
-              <Save className="h-4 w-4" />
+              <Save className="h-4 w-4 stroke-[2.5px]" />
             )}
             {updateProfileMutation.isPending
               ? 'Saving...'
@@ -221,15 +221,15 @@ export const Profile: React.FC = () => {
       </div>
 
       {/* Change Password Form */}
-      <div className="p-6 rounded-2xl glass-panel space-y-5">
-        <h3 className="text-base font-bold text-white flex items-center gap-2 m-0">
-          <Lock className="h-4 w-4 text-brand-500" /> Change Password
+      <div className="p-6 border-4 border-black bg-white shadow-neo-md space-y-5">
+        <h3 className="text-base font-black uppercase tracking-wider text-black flex items-center gap-2 m-0">
+          <Lock className="h-5 w-5 text-black stroke-[2.5px]" /> Change Password
         </h3>
 
         <form onSubmit={passwordForm.handleSubmit(onPasswordSubmit)} className="space-y-4">
           {/* Old Password */}
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-dark-300">Current Password</label>
+            <label className="text-xs font-black text-black uppercase tracking-widest block">Current Password</label>
             <div className="relative">
               <input
                 type={showOld ? 'text' : 'password'}
@@ -240,21 +240,21 @@ export const Profile: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowOld(!showOld)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-dark-400 hover:text-dark-200 transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-black hover:text-neo-accent transition-colors"
               >
-                {showOld ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                {showOld ? <EyeOff className="h-4 w-4 stroke-[2.5px]" /> : <Eye className="h-4 w-4 stroke-[2.5px]" />}
               </button>
             </div>
             {passwordForm.formState.errors.oldPassword && (
-              <p className="text-[10px] text-red-400 font-medium">
+              <span className="text-xs text-white bg-black font-black uppercase tracking-wider px-2 py-1 inline-block mt-1">
                 {passwordForm.formState.errors.oldPassword.message}
-              </p>
+              </span>
             )}
           </div>
 
           {/* New Password */}
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-dark-300">New Password</label>
+            <label className="text-xs font-black text-black uppercase tracking-widest block">New Password</label>
             <div className="relative">
               <input
                 type={showNew ? 'text' : 'password'}
@@ -274,21 +274,21 @@ export const Profile: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowNew(!showNew)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-dark-400 hover:text-dark-200 transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-black hover:text-neo-accent transition-colors"
               >
-                {showNew ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                {showNew ? <EyeOff className="h-4 w-4 stroke-[2.5px]" /> : <Eye className="h-4 w-4 stroke-[2.5px]" />}
               </button>
             </div>
             {passwordForm.formState.errors.newPassword && (
-              <p className="text-[10px] text-red-400 font-medium">
+              <span className="text-xs text-white bg-black font-black uppercase tracking-wider px-2 py-1 inline-block mt-1">
                 {passwordForm.formState.errors.newPassword.message}
-              </p>
+              </span>
             )}
           </div>
 
           {/* Confirm Password */}
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-dark-300">Confirm New Password</label>
+            <label className="text-xs font-black text-black uppercase tracking-widest block">Confirm New Password</label>
             <div className="relative">
               <input
                 type={showConfirm ? 'text' : 'password'}
@@ -299,31 +299,31 @@ export const Profile: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowConfirm(!showConfirm)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-dark-400 hover:text-dark-200 transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-black hover:text-neo-accent transition-colors"
               >
-                {showConfirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                {showConfirm ? <EyeOff className="h-4 w-4 stroke-[2.5px]" /> : <Eye className="h-4 w-4 stroke-[2.5px]" />}
               </button>
             </div>
             {passwordForm.formState.errors.confirmPassword && (
-              <p className="text-[10px] text-red-400 font-medium">
+              <span className="text-xs text-white bg-black font-black uppercase tracking-wider px-2 py-1 inline-block mt-1">
                 {passwordForm.formState.errors.confirmPassword.message}
-              </p>
+              </span>
             )}
           </div>
 
-          <div className="p-3 rounded-xl bg-dark-900/60 border border-dark-800/40">
-            <p className="text-[11px] text-dark-400 leading-relaxed">
+          <div className="p-3 border-4 border-black bg-neo-secondary/30">
+            <p className="text-[11px] font-bold text-black/80 uppercase tracking-wider leading-relaxed">
               Password requirements: 8–16 characters, at least 1 uppercase letter, and at least 1 special character
-              (e.g. <span className="text-dark-300 font-mono">!@#$%^&*</span>).
+              (e.g. <span className="text-black font-mono font-black">!@#$%^&*</span>).
             </p>
           </div>
 
           <button
             type="submit"
             disabled={changePasswordMutation.isPending}
-            className="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 disabled:bg-brand-600/50 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer disabled:cursor-not-allowed"
+            className="w-full py-3 border-4 border-black bg-neo-secondary hover:bg-neo-accent disabled:bg-neo-secondary/50 text-black font-black uppercase tracking-wider text-sm transition-all duration-100 shadow-neo-sm active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer flex items-center justify-center gap-2 mt-4"
           >
-            {changePasswordMutation.isPending && <Loader2 className="h-4 w-4 animate-spin" />}
+            {changePasswordMutation.isPending && <Loader2 className="h-4 w-4 stroke-[3px] animate-spin" />}
             Change Password
           </button>
         </form>

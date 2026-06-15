@@ -7,6 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
+        neo: {
+          bg: '#FFFDF5', // Cream
+          accent: '#FF6B6B', // Hot Red
+          secondary: '#FFD93D', // Vivid Yellow
+          muted: '#C4B5FD', // Soft Violet
+        },
         brand: {
           50: '#f5f7ff',
           100: '#ebf0ff',
@@ -34,10 +40,17 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Outfit', 'Inter', 'sans-serif'],
+        sans: ['"Space Grotesk"', 'Outfit', 'Inter', 'sans-serif'],
       },
       backdropBlur: {
         xs: '2px',
+      },
+      boxShadow: {
+        'neo-sm': '4px 4px 0px 0px #000',
+        'neo-md': '8px 8px 0px 0px #000',
+        'neo-lg': '12px 12px 0px 0px #000',
+        'neo-xl': '16px 16px 0px 0px #000',
+        'neo-white': '16px 16px 0px 0px #FFF',
       },
       keyframes: {
         'bounce-in': {

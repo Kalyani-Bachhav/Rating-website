@@ -76,7 +76,9 @@ export const OwnerDashboard: React.FC = () => {
       {[1, 2, 3, 4, 5].map((s) => (
         <Star
           key={s}
-          className={`h-3.5 w-3.5 ${s <= score ? 'text-amber-400 fill-amber-400' : 'text-dark-700'}`}
+          className={`h-3.5 w-3.5 stroke-[2px] ${
+            s <= score ? 'text-black fill-neo-secondary' : 'text-black/30 fill-white'
+          }`}
         />
       ))}
     </div>
@@ -88,44 +90,44 @@ export const OwnerDashboard: React.FC = () => {
   if (statsLoading && !ownerData) {
     return (
       <div className="space-y-8">
-        <div className="h-8 w-64 rounded-xl glass-panel shimmer-wrapper" />
+        <div className="h-8 w-64 border-4 border-black bg-white shadow-neo-sm shimmer-wrapper" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="h-28 rounded-2xl glass-panel shimmer-wrapper" />
+            <div key={i} className="h-28 border-4 border-black bg-white shadow-neo-sm shimmer-wrapper" />
           ))}
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="h-64 rounded-2xl glass-panel shimmer-wrapper" />
-          <div className="h-64 rounded-2xl glass-panel shimmer-wrapper" />
+          <div className="h-64 border-4 border-black bg-white shadow-neo-md shimmer-wrapper" />
+          <div className="h-64 border-4 border-black bg-white shadow-neo-md shimmer-wrapper" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 text-black">
       {/* Header */}
       <div>
-        <h2 className="text-3xl font-extrabold tracking-tight text-white m-0">Store Dashboard</h2>
-        <p className="text-sm text-dark-300 mt-1">
+        <h2 className="text-4xl font-black uppercase tracking-tight text-black m-0">Store Dashboard</h2>
+        <p className="text-sm font-bold text-black/70 mt-1 uppercase tracking-wider">
           Performance metrics and customer feedback for your store
         </p>
       </div>
 
       {/* Store info banner */}
       {store && (
-        <div className="p-5 rounded-2xl glass-card flex flex-col sm:flex-row items-start sm:items-center gap-5">
-          <div className="h-14 w-14 rounded-2xl bg-gradient-to-tr from-brand-700 to-indigo-500 flex items-center justify-center text-white font-black text-2xl uppercase shadow-lg shadow-brand-900/30 shrink-0">
+        <div className="p-5 border-4 border-black bg-white shadow-neo-sm flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="h-14 w-14 border-4 border-black bg-neo-muted flex items-center justify-center text-black font-black text-2xl uppercase shadow-neo-sm shrink-0">
             {store.name?.charAt(0) ?? 'S'}
           </div>
           <div className="flex-1">
-            <h3 className="text-xl font-bold text-white m-0">{store.name}</h3>
+            <h3 className="text-xl font-black uppercase tracking-tight text-black m-0">{store.name}</h3>
             <div className="flex flex-wrap gap-3 mt-2">
-              <div className="flex items-center gap-1.5 text-dark-400 text-xs">
-                <Mail className="h-3.5 w-3.5 text-dark-500" /> {store.email}
+              <div className="flex items-center gap-1.5 text-black/70 font-bold uppercase tracking-wider text-xs">
+                <Mail className="h-3.5 w-3.5 text-black stroke-[2.5px]" /> {store.email}
               </div>
-              <div className="flex items-center gap-1.5 text-dark-400 text-xs">
-                <MapPin className="h-3.5 w-3.5 text-dark-500" />
+              <div className="flex items-center gap-1.5 text-black/70 font-bold uppercase tracking-wider text-xs">
+                <MapPin className="h-3.5 w-3.5 text-black stroke-[2.5px]" />
                 <span className="truncate max-w-xs">{store.address}</span>
               </div>
             </div>
@@ -136,47 +138,47 @@ export const OwnerDashboard: React.FC = () => {
       {/* KPI Cards */}
       {store && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div className="p-5 rounded-2xl glass-card flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 shrink-0">
-              <Star className="h-5 w-5 text-amber-400 fill-amber-400" />
+          <div className="p-5 border-4 border-black bg-white shadow-neo-sm flex items-center gap-4">
+            <div className="p-3 border-4 border-black bg-neo-secondary text-black shadow-neo-sm shrink-0">
+              <Star className="h-5 w-5 text-black fill-current stroke-[2px]" />
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-dark-400 font-bold">Avg Rating</p>
-              <p className="text-3xl font-extrabold text-white mt-0.5">
+              <p className="text-[10px] uppercase tracking-widest text-black/60 font-black">Avg Rating</p>
+              <p className="text-3xl font-black text-black mt-0.5">
                 {store.averageRating > 0 ? store.averageRating.toFixed(1) : '—'}
               </p>
             </div>
           </div>
 
-          <div className="p-5 rounded-2xl glass-card flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-brand-500/10 border border-brand-500/20 shrink-0">
-              <Users className="h-5 w-5 text-brand-400" />
+          <div className="p-5 border-4 border-black bg-white shadow-neo-sm flex items-center gap-4">
+            <div className="p-3 border-4 border-black bg-neo-muted text-black shadow-neo-sm shrink-0">
+              <Users className="h-5 w-5 text-black stroke-[2.5px]" />
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-dark-400 font-bold">Total Reviews</p>
-              <p className="text-3xl font-extrabold text-white mt-0.5">{store.totalRatings}</p>
+              <p className="text-[10px] uppercase tracking-widest text-black/60 font-black">Total Reviews</p>
+              <p className="text-3xl font-black text-black mt-0.5">{store.totalRatings}</p>
             </div>
           </div>
 
-          <div className="p-5 rounded-2xl glass-card flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 shrink-0">
-              <Award className="h-5 w-5 text-emerald-400" />
+          <div className="p-5 border-4 border-black bg-white shadow-neo-sm flex items-center gap-4">
+            <div className="p-3 border-4 border-black bg-neo-accent text-black shadow-neo-sm shrink-0">
+              <Award className="h-5 w-5 text-black stroke-[2.5px]" />
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-dark-400 font-bold">5-Star Reviews</p>
-              <p className="text-3xl font-extrabold text-white mt-0.5">
+              <p className="text-[10px] uppercase tracking-widest text-black/60 font-black">5-Star Reviews</p>
+              <p className="text-3xl font-black text-black mt-0.5">
                 {store.ratingBreakdown?.find((r: any) => r.rating === 5)?.count ?? 0}
               </p>
             </div>
           </div>
 
-          <div className="p-5 rounded-2xl glass-card flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20 shrink-0">
-              <TrendingUp className="h-5 w-5 text-indigo-400" />
+          <div className="p-5 border-4 border-black bg-white shadow-neo-sm flex items-center gap-4">
+            <div className="p-3 border-4 border-black bg-neo-secondary text-black shadow-neo-sm shrink-0">
+              <TrendingUp className="h-5 w-5 text-black stroke-[2.5px]" />
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-dark-400 font-bold">Satisfaction</p>
-              <p className="text-2xl font-extrabold text-white mt-0.5">
+              <p className="text-[10px] uppercase tracking-widest text-black/60 font-black">Satisfaction</p>
+              <p className="text-2xl font-black text-black mt-0.5">
                 {store.averageRating >= 4 ? '🔥 High' : store.averageRating >= 2.5 ? '👍 Good' : store.totalRatings === 0 ? '—' : '📉 Low'}
               </p>
             </div>
@@ -188,9 +190,9 @@ export const OwnerDashboard: React.FC = () => {
       {store && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Rating Trend from History */}
-          <div className="p-6 rounded-2xl glass-panel">
-            <h4 className="text-base font-bold text-white mb-6 flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-brand-500" /> Recent Rating Trend
+          <div className="p-6 border-4 border-black bg-white shadow-neo-md">
+            <h4 className="text-base font-black uppercase tracking-wider text-black mb-6 flex items-center gap-2">
+              <TrendingUp className="h-5 w-5 text-black stroke-[2.5px]" /> Recent Rating Trend
             </h4>
             {trendData.length > 0 ? (
               <div className="h-56">
@@ -198,22 +200,22 @@ export const OwnerDashboard: React.FC = () => {
                   <AreaChart data={trendData}>
                     <defs>
                       <linearGradient id="ratingGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                        <stop offset="5%" stopColor="#2563eb" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#2563eb" stopOpacity={0} />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.3} />
-                    <XAxis dataKey="date" stroke="#9ca3af" tick={{ fontSize: 11 }} />
-                    <YAxis stroke="#9ca3af" domain={[0, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 11 }} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#000" opacity={0.2} />
+                    <XAxis dataKey="date" stroke="#000" tick={{ fontSize: 11, fontWeight: 'bold' }} />
+                    <YAxis stroke="#000" domain={[0, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 11, fontWeight: 'bold' }} />
                     <Tooltip
-                      contentStyle={{ backgroundColor: '#111827', borderColor: '#374151', borderRadius: '12px' }}
-                      labelStyle={{ color: '#9ca3af' }}
+                      contentStyle={{ backgroundColor: '#fff', borderColor: '#000', borderWidth: '4px', borderRadius: '0px' }}
+                      labelStyle={{ fontWeight: 'black', textTransform: 'uppercase' }}
                     />
                     <Area
                       type="monotone"
                       dataKey="avgRating"
-                      stroke="#3b82f6"
-                      strokeWidth={2}
+                      stroke="#2563eb"
+                      strokeWidth={3}
                       fill="url(#ratingGrad)"
                       name="Avg Rating"
                     />
@@ -221,30 +223,30 @@ export const OwnerDashboard: React.FC = () => {
                 </ResponsiveContainer>
               </div>
             ) : (
-              <div className="h-56 flex items-center justify-center text-dark-500 text-sm">
+              <div className="h-56 flex items-center justify-center text-black/50 text-sm font-bold uppercase tracking-wider">
                 No ratings data to display yet
               </div>
             )}
           </div>
 
           {/* Rating Distribution Bar Chart */}
-          <div className="p-6 rounded-2xl glass-panel">
-            <h4 className="text-base font-bold text-white mb-6 flex items-center gap-2">
-              <Star className="h-4 w-4 text-amber-400 fill-amber-400" /> Rating Distribution
+          <div className="p-6 border-4 border-black bg-white shadow-neo-md">
+            <h4 className="text-base font-black uppercase tracking-wider text-black mb-6 flex items-center gap-2">
+              <Star className="h-5 w-5 text-black fill-neo-secondary stroke-[2.5px]" /> Rating Distribution
             </h4>
             <div className="h-56">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={ratingBarData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.3} />
-                  <XAxis dataKey="star" stroke="#9ca3af" tick={{ fontSize: 12 }} />
-                  <YAxis stroke="#9ca3af" allowDecimals={false} tick={{ fontSize: 11 }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#000" opacity={0.2} />
+                  <XAxis dataKey="star" stroke="#000" tick={{ fontSize: 12, fontWeight: 'bold' }} />
+                  <YAxis stroke="#000" allowDecimals={false} tick={{ fontSize: 11, fontWeight: 'bold' }} />
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#111827', borderColor: '#374151', borderRadius: '12px' }}
+                    contentStyle={{ backgroundColor: '#fff', borderColor: '#000', borderWidth: '4px', borderRadius: '0px' }}
                     labelFormatter={(label) => `${label} Ratings`}
                   />
-                  <Bar dataKey="count" radius={[4, 4, 0, 0]} name="Reviews">
+                  <Bar dataKey="count" radius={[0, 0, 0, 0]} name="Reviews">
                     {ratingBarData.map((_: any, index: number) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="#000" strokeWidth={2} />
                     ))}
                   </Bar>
                 </BarChart>
@@ -256,44 +258,44 @@ export const OwnerDashboard: React.FC = () => {
 
       {/* Rating History Table */}
       <div className="space-y-4">
-        <h3 className="text-xl font-bold text-white flex items-center gap-2">
-          <Calendar className="h-5 w-5 text-brand-500" /> Customer Reviews
+        <h3 className="text-xl font-black uppercase tracking-wider text-black flex items-center gap-2">
+          <Calendar className="h-5 w-5 text-black stroke-[2.5px]" /> Customer Reviews
         </h3>
 
         {statsLoading ? (
-          <div className="h-64 glass-panel shimmer-wrapper rounded-2xl" />
+          <div className="h-64 border-4 border-black bg-white shadow-neo-md shimmer-wrapper" />
         ) : !ratingsData?.data?.length ? (
-          <div className="flex flex-col items-center justify-center py-16 gap-3 text-dark-400 glass-panel rounded-2xl">
-            <Star className="h-10 w-10 opacity-20" />
-            <p className="font-medium">No ratings received yet</p>
-            <p className="text-sm">Customer reviews will appear here once they rate your store</p>
+          <div className="flex flex-col items-center justify-center border-4 border-black bg-white p-16 shadow-neo-sm gap-4 text-black text-center">
+            <Star className="h-10 w-10 text-black stroke-[2px]" />
+            <p className="text-xl font-black uppercase tracking-wider">No ratings received yet</p>
+            <p className="text-sm font-bold text-black/60">Customer reviews will appear here once they rate your store</p>
           </div>
         ) : (
-          <div className="glass-panel rounded-2xl overflow-hidden">
+          <div className="border-4 border-black bg-white shadow-neo-md overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse text-left text-sm text-dark-200">
-                <thead className="bg-dark-900/60 border-b border-dark-800/60 text-xs font-semibold uppercase text-dark-300">
+              <table className="w-full border-collapse text-left text-sm text-black">
+                <thead className="bg-neo-muted/30 border-b-4 border-black text-xs font-black uppercase tracking-wider text-black">
                   <tr>
-                    <th className="px-6 py-4">Customer</th>
-                    <th className="px-6 py-4">Email</th>
-                    <th className="px-6 py-4">Rating</th>
+                    <th className="px-6 py-4 border-r-4 border-black last:border-r-0">Customer</th>
+                    <th className="px-6 py-4 border-r-4 border-black last:border-r-0">Email</th>
+                    <th className="px-6 py-4 border-r-4 border-black last:border-r-0">Rating</th>
                     <th className="px-6 py-4">Date</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-dark-800/40">
+                <tbody className="divide-y-4 divide-black">
                   {ratingsData.data.map((item: RatingHistoryItem) => (
-                    <tr key={item.id} className="hover:bg-dark-900/30 transition-colors">
-                      <td className="px-6 py-4">
+                    <tr key={item.id} className="hover:bg-neo-secondary/10 transition-colors">
+                      <td className="px-6 py-4 border-r-4 border-black last:border-r-0">
                         <div className="flex items-center gap-3">
-                          <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-brand-700 to-indigo-500 flex items-center justify-center text-white font-bold text-xs uppercase shrink-0">
+                          <div className="h-8 w-8 border-2 border-black bg-neo-secondary flex items-center justify-center text-black font-black text-xs uppercase shrink-0">
                             {item.user.name.charAt(0)}
                           </div>
-                          <span className="font-semibold text-white">{item.user.name}</span>
+                          <span className="font-black text-black uppercase tracking-wide">{item.user.name}</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-dark-400">{item.user.email}</td>
-                      <td className="px-6 py-4">{renderStars(item.rating)}</td>
-                      <td className="px-6 py-4 text-dark-400 text-xs">{formatDate(item.createdAt)}</td>
+                      <td className="px-6 py-4 text-black/70 font-bold border-r-4 border-black last:border-r-0">{item.user.email}</td>
+                      <td className="px-6 py-4 border-r-4 border-black last:border-r-0">{renderStars(item.rating)}</td>
+                      <td className="px-6 py-4 text-black/60 font-bold text-xs">{formatDate(item.createdAt)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -302,24 +304,24 @@ export const OwnerDashboard: React.FC = () => {
 
             {/* Pagination */}
             {ratingsData.meta?.totalPages > 1 && (
-              <div className="px-6 py-4 flex items-center justify-between border-t border-dark-800/40">
-                <span className="text-xs text-dark-400">
+              <div className="px-6 py-4 flex items-center justify-between border-t-4 border-black bg-neo-muted/10">
+                <span className="text-xs font-black text-black uppercase tracking-wider">
                   Page {ratingsData.meta.page} of {ratingsData.meta.totalPages} ({ratingsData.meta.total} reviews)
                 </span>
                 <div className="flex gap-2">
                   <button
                     disabled={historyPage <= 1}
                     onClick={() => setHistoryPage((p) => p - 1)}
-                    className="p-1.5 rounded-lg border border-dark-800 text-dark-300 hover:text-white disabled:opacity-40 transition-opacity"
+                    className="p-1.5 border-2 border-black bg-white text-black disabled:opacity-40 hover:bg-neo-secondary hover:shadow-neo-sm transition-all cursor-pointer"
                   >
-                    <ChevronLeft className="h-4 w-4" />
+                    <ChevronLeft className="h-4 w-4 stroke-[3px]" />
                   </button>
                   <button
                     disabled={historyPage >= ratingsData.meta.totalPages}
                     onClick={() => setHistoryPage((p) => p + 1)}
-                    className="p-1.5 rounded-lg border border-dark-800 text-dark-300 hover:text-white disabled:opacity-40 transition-opacity"
+                    className="p-1.5 border-2 border-black bg-white text-black disabled:opacity-40 hover:bg-neo-secondary hover:shadow-neo-sm transition-all cursor-pointer"
                   >
-                    <ChevronRight className="h-4 w-4" />
+                    <ChevronRight className="h-4 w-4 stroke-[3px]" />
                   </button>
                 </div>
               </div>

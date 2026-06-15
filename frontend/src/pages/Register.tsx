@@ -47,135 +47,136 @@ export const Register: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-dark-950 relative overflow-hidden">
-      {/* Background glowing decorations */}
-      <div className="absolute top-1/4 right-1/4 h-72 w-72 rounded-full bg-brand-600/10 blur-3xl"></div>
-      <div className="absolute bottom-1/4 left-1/4 h-80 w-80 rounded-full bg-indigo-600/10 blur-3xl"></div>
+    <div className="min-h-screen flex items-center justify-center p-6 bg-neo-bg relative overflow-hidden font-sans py-12">
+      {/* Decorative background elements */}
+      <div className="absolute top-20 right-20 w-32 h-32 bg-neo-accent border-4 border-black rounded-none shadow-neo-sm rotate-[15deg] -z-0 hidden md:block"></div>
+      <div className="absolute bottom-20 left-20 w-48 h-48 bg-neo-secondary border-4 border-black shadow-neo-md -rotate-[10deg] -z-0 hidden md:block"></div>
+      <div className="absolute top-1/3 left-10 w-16 h-16 bg-neo-muted border-4 border-black shadow-neo-sm rotate-[45deg] rounded-full -z-0 hidden md:block"></div>
 
-      <div className="w-full max-w-lg p-8 rounded-2xl border border-dark-800/80 bg-dark-900/40 backdrop-blur-xl shadow-2xl relative z-10 animate-bounce-in">
+      <div className="w-full max-w-lg p-8 border-8 border-black bg-white shadow-neo-xl relative z-10 animate-bounce-in -rotate-1">
         {/* Brand header */}
-        <div className="flex flex-col items-center gap-3 text-center mb-6">
-          <div className="p-3 rounded-2xl bg-brand-500/10 border border-brand-500/30 text-brand-500">
-            <Star className="h-8 w-8 fill-current animate-pulse" />
+        <div className="flex flex-col items-center gap-4 text-center mb-8">
+          <div className="p-4 border-4 border-black bg-neo-secondary shadow-neo-sm rotate-3">
+            <Star className="h-10 w-10 stroke-[3px] text-black fill-neo-accent" />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-white tracking-tight m-0">Create Account</h2>
-            <p className="text-sm text-dark-300 mt-1">Register as a new user to search and rate local stores</p>
+            <h2 className="text-4xl font-black text-black tracking-tighter m-0 uppercase leading-none">Create<br/>Account</h2>
+            <p className="text-sm font-bold text-black mt-3 uppercase tracking-wider bg-neo-muted/30 border-2 border-black px-2 py-1 inline-block">Join to rate local stores</p>
           </div>
         </div>
 
         {/* Registration form */}
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           
           {/* Full Name field */}
-          <div className="space-y-1">
-            <label className="text-xs font-semibold text-dark-200 uppercase tracking-wider block">Full Name</label>
+          <div className="space-y-2">
+            <label className="text-sm font-black text-black uppercase tracking-widest block bg-white w-max px-1 -mb-4 relative z-10 ml-3">Full Name</label>
             <div className="relative">
-              <User className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-dark-300" />
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-black stroke-[3px]" />
               <input
                 type="text"
-                placeholder="e.g. Regular Customer Account User (Min 20 characters)"
-                className={`w-full pl-11 pr-4 py-2.5 rounded-xl bg-dark-900/50 border ${
-                  errors.name ? 'border-red-500/50 focus:border-red-500' : 'border-dark-800/80 focus:border-brand-500'
-                } text-white text-sm focus:outline-none focus:ring-1 focus:ring-opacity-50`}
+                placeholder="REGULAR CUSTOMER"
+                className={`w-full pl-12 pr-4 py-4 border-4 bg-white text-black font-bold uppercase tracking-wider text-base focus:outline-none transition-colors ${
+                  errors.name ? 'border-neo-accent focus:bg-neo-accent/10' : 'border-black focus:bg-neo-secondary focus:shadow-neo-sm'
+                }`}
                 {...register('name', {
                   required: 'Name is required',
-                  minLength: { value: 20, message: 'Name must be at least 20 characters' },
-                  maxLength: { value: 60, message: 'Name must be at most 60 characters' },
+                  minLength: { value: 20, message: 'Must be at least 20 chars' },
+                  maxLength: { value: 60, message: 'Must be at most 60 chars' },
                 })}
               />
             </div>
-            {errors.name && <span className="text-[11px] text-red-400 font-medium">{errors.name.message}</span>}
+            {errors.name && <span className="text-sm text-white bg-black font-bold uppercase tracking-wider px-2 py-1 inline-block mt-1">{errors.name.message}</span>}
           </div>
 
           {/* Email Address field */}
-          <div className="space-y-1">
-            <label className="text-xs font-semibold text-dark-200 uppercase tracking-wider block">Email Address</label>
+          <div className="space-y-2">
+            <label className="text-sm font-black text-black uppercase tracking-widest block bg-white w-max px-1 -mb-4 relative z-10 ml-3">Email Address</label>
             <div className="relative">
-              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-dark-300" />
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-black stroke-[3px]" />
               <input
                 type="email"
-                placeholder="you@domain.com"
-                className={`w-full pl-11 pr-4 py-2.5 rounded-xl bg-dark-900/50 border ${
-                  errors.email ? 'border-red-500/50 focus:border-red-500' : 'border-dark-800/80 focus:border-brand-500'
-                } text-white text-sm focus:outline-none focus:ring-1 focus:ring-opacity-50`}
+                placeholder="YOU@DOMAIN.COM"
+                className={`w-full pl-12 pr-4 py-4 border-4 bg-white text-black font-bold uppercase tracking-wider text-base focus:outline-none transition-colors ${
+                  errors.email ? 'border-neo-accent focus:bg-neo-accent/10' : 'border-black focus:bg-neo-secondary focus:shadow-neo-sm'
+                }`}
                 {...register('email', {
                   required: 'Email is required',
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Invalid email address',
+                    message: 'Invalid email',
                   },
                 })}
               />
             </div>
-            {errors.email && <span className="text-[11px] text-red-400 font-medium">{errors.email.message}</span>}
+            {errors.email && <span className="text-sm text-white bg-black font-bold uppercase tracking-wider px-2 py-1 inline-block mt-1">{errors.email.message}</span>}
           </div>
 
           {/* Location Address field */}
-          <div className="space-y-1">
-            <label className="text-xs font-semibold text-dark-200 uppercase tracking-wider block">Location Address</label>
+          <div className="space-y-2">
+            <label className="text-sm font-black text-black uppercase tracking-widest block bg-white w-max px-1 -mb-4 relative z-10 ml-3">Location Address</label>
             <div className="relative">
-              <MapPin className="absolute left-3.5 top-3.5 h-4 w-4 text-dark-300" />
+              <MapPin className="absolute left-4 top-4 h-5 w-5 text-black stroke-[3px]" />
               <textarea
-                placeholder="Enter physical address (Max 400 characters)"
+                placeholder="ENTER PHYSICAL ADDRESS"
                 rows={2}
-                className={`w-full pl-11 pr-4 py-2.5 rounded-xl bg-dark-900/50 border ${
-                  errors.address ? 'border-red-500/50 focus:border-red-500' : 'border-dark-800/80 focus:border-brand-500'
-                } text-white text-sm focus:outline-none focus:ring-1 focus:ring-opacity-50 resize-none`}
+                className={`w-full pl-12 pr-4 py-4 border-4 bg-white text-black font-bold uppercase tracking-wider text-base focus:outline-none transition-colors resize-none ${
+                  errors.address ? 'border-neo-accent focus:bg-neo-accent/10' : 'border-black focus:bg-neo-secondary focus:shadow-neo-sm'
+                }`}
                 {...register('address', {
                   required: 'Address is required',
-                  maxLength: { value: 400, message: 'Address cannot exceed 400 characters' },
+                  maxLength: { value: 400, message: 'Max 400 characters' },
                 })}
               />
             </div>
-            {errors.address && <span className="text-[11px] text-red-400 font-medium">{errors.address.message}</span>}
+            {errors.address && <span className="text-sm text-white bg-black font-bold uppercase tracking-wider px-2 py-1 inline-block mt-1">{errors.address.message}</span>}
           </div>
 
-          {/* Password complexity details container */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Password complex details container */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Password input */}
-            <div className="space-y-1">
-              <label className="text-xs font-semibold text-dark-200 uppercase tracking-wider block">Password</label>
+            <div className="space-y-2">
+              <label className="text-sm font-black text-black uppercase tracking-widest block bg-white w-max px-1 -mb-4 relative z-10 ml-3">Password</label>
               <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-dark-300" />
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-black stroke-[3px]" />
                 <input
                   type="password"
-                  placeholder="8-16 characters"
-                  className={`w-full pl-11 pr-4 py-2.5 rounded-xl bg-dark-900/50 border ${
-                    errors.password ? 'border-red-500/50 focus:border-red-500' : 'border-dark-800/80 focus:border-brand-500'
-                  } text-white text-sm focus:outline-none focus:ring-1 focus:ring-opacity-50`}
+                  placeholder="8-16 CHARS"
+                  className={`w-full pl-12 pr-4 py-4 border-4 bg-white text-black font-bold tracking-widest text-lg focus:outline-none transition-colors ${
+                    errors.password ? 'border-neo-accent focus:bg-neo-accent/10' : 'border-black focus:bg-neo-secondary focus:shadow-neo-sm'
+                  }`}
                   {...register('password', {
-                    required: 'Password is required',
-                    minLength: { value: 8, message: 'Password must be at least 8 characters' },
-                    maxLength: { value: 16, message: 'Password must be at most 16 characters' },
+                    required: 'Required',
+                    minLength: { value: 8, message: 'Min 8 chars' },
+                    maxLength: { value: 16, message: 'Max 16 chars' },
                     validate: {
-                      uppercase: (v) => /(?=.*[A-Z])/.test(v) || 'Must contain at least one uppercase letter',
-                      special: (v) => /(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`])/.test(v) || 'Must contain at least one special character',
+                      uppercase: (v) => /(?=.*[A-Z])/.test(v) || 'Need uppercase',
+                      special: (v) => /(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`])/.test(v) || 'Need special char',
                     },
                   })}
                 />
               </div>
-              {errors.password && <span className="text-[11px] text-red-400 font-medium">{errors.password.message}</span>}
+              {errors.password && <span className="text-xs text-white bg-black font-bold uppercase tracking-wider px-2 py-1 inline-block mt-1">{errors.password.message}</span>}
             </div>
 
             {/* Confirm Password input */}
-            <div className="space-y-1">
-              <label className="text-xs font-semibold text-dark-200 uppercase tracking-wider block">Confirm Password</label>
+            <div className="space-y-2">
+              <label className="text-sm font-black text-black uppercase tracking-widest block bg-white w-max px-1 -mb-4 relative z-10 ml-3">Confirm</label>
               <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-dark-300" />
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-black stroke-[3px]" />
                 <input
                   type="password"
-                  placeholder="Re-type password"
-                  className={`w-full pl-11 pr-4 py-2.5 rounded-xl bg-dark-900/50 border ${
-                    errors.confirmPassword ? 'border-red-500/50 focus:border-red-500' : 'border-dark-800/80 focus:border-brand-500'
-                  } text-white text-sm focus:outline-none focus:ring-1 focus:ring-opacity-50`}
+                  placeholder="RE-TYPE"
+                  className={`w-full pl-12 pr-4 py-4 border-4 bg-white text-black font-bold tracking-widest text-lg focus:outline-none transition-colors ${
+                    errors.confirmPassword ? 'border-neo-accent focus:bg-neo-accent/10' : 'border-black focus:bg-neo-secondary focus:shadow-neo-sm'
+                  }`}
                   {...register('confirmPassword', {
-                    required: 'Confirm password is required',
-                    validate: (v) => v === passwordVal || 'Passwords do not match',
+                    required: 'Required',
+                    validate: (v) => v === passwordVal || 'Must match',
                   })}
                 />
               </div>
-              {errors.confirmPassword && <span className="text-[11px] text-red-400 font-medium">{errors.confirmPassword.message}</span>}
+              {errors.confirmPassword && <span className="text-xs text-white bg-black font-bold uppercase tracking-wider px-2 py-1 inline-block mt-1">{errors.confirmPassword.message}</span>}
             </div>
           </div>
 
@@ -183,11 +184,11 @@ export const Register: React.FC = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-500 disabled:bg-brand-600/50 text-white font-semibold text-sm transition-all duration-200 shadow-lg shadow-brand-600/20 flex items-center justify-center gap-2 cursor-pointer mt-2"
+            className="w-full py-4 border-4 border-black bg-neo-secondary hover:bg-neo-accent text-black font-black uppercase tracking-widest text-lg transition-all duration-100 shadow-neo-md active:translate-x-2 active:translate-y-2 active:shadow-none flex items-center justify-center gap-3 cursor-pointer mt-8"
           >
             {submitting ? (
               <>
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2 className="h-6 w-6 stroke-[3px] animate-spin" />
                 Creating Account...
               </>
             ) : (
@@ -197,10 +198,10 @@ export const Register: React.FC = () => {
         </form>
 
         {/* Footer options */}
-        <div className="mt-6 pt-5 border-t border-dark-800/40 text-center">
-          <p className="text-sm text-dark-300">
+        <div className="mt-8 pt-6 border-t-4 border-black text-center">
+          <p className="text-base font-bold text-black uppercase tracking-wider">
             Already have an account?{' '}
-            <Link to="/login" className="font-semibold text-brand-400 hover:text-brand-300 hover:underline">
+            <Link to="/login" className="inline-block mt-2 bg-neo-secondary px-3 py-1 border-2 border-black hover:bg-neo-accent transition-colors shadow-neo-sm hover:-translate-y-1">
               Sign In
             </Link>
           </p>

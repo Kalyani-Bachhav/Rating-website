@@ -49,36 +49,37 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-dark-950 relative overflow-hidden">
-      {/* Background glowing decorations */}
-      <div className="absolute top-1/4 left-1/4 h-72 w-72 rounded-full bg-brand-600/10 blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-indigo-600/10 blur-3xl"></div>
+    <div className="min-h-screen flex items-center justify-center p-6 bg-neo-bg relative overflow-hidden font-sans">
+      {/* Decorative background elements */}
+      <div className="absolute top-10 left-10 w-32 h-32 bg-neo-accent border-4 border-black rounded-full shadow-neo-sm rotate-12 -z-0 hidden md:block"></div>
+      <div className="absolute bottom-10 right-10 w-40 h-40 bg-neo-secondary border-4 border-black shadow-neo-md -rotate-12 -z-0 hidden md:block"></div>
+      <div className="absolute top-1/4 right-1/4 w-16 h-16 bg-neo-muted border-4 border-black shadow-neo-sm rotate-45 -z-0 hidden md:block"></div>
 
-      <div className="w-full max-w-md p-8 rounded-2xl border border-dark-800/80 bg-dark-900/40 backdrop-blur-xl shadow-2xl relative z-10 animate-bounce-in">
+      <div className="w-full max-w-md p-8 border-8 border-black bg-white shadow-neo-xl relative z-10 animate-bounce-in rotate-1">
         {/* Brand header */}
-        <div className="flex flex-col items-center gap-3 text-center mb-8">
-          <div className="p-3 rounded-2xl bg-brand-500/10 border border-brand-500/30 text-brand-500">
-            <Star className="h-8 w-8 fill-current animate-pulse" />
+        <div className="flex flex-col items-center gap-4 text-center mb-10">
+          <div className="p-4 border-4 border-black bg-neo-secondary shadow-neo-sm -rotate-6">
+            <Star className="h-10 w-10 stroke-[3px] text-black fill-neo-accent" />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-white tracking-tight m-0">Welcome Back</h2>
-            <p className="text-sm text-dark-300 mt-1">Sign in to manage your ratings or explore stores</p>
+            <h2 className="text-4xl font-black text-black tracking-tighter m-0 uppercase leading-none">Welcome<br/>Back</h2>
+            <p className="text-base font-bold text-black mt-3 uppercase tracking-wider bg-neo-muted/30 border-2 border-black px-2 py-1 inline-block">Sign in to manage ratings</p>
           </div>
         </div>
 
         {/* Login form */}
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Email Address field */}
-          <div className="space-y-1">
-            <label className="text-xs font-semibold text-dark-200 uppercase tracking-wider block">Email Address</label>
+          <div className="space-y-2">
+            <label className="text-sm font-black text-black uppercase tracking-widest block bg-white w-max px-1 -mb-4 relative z-10 ml-3">Email Address</label>
             <div className="relative">
-              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-dark-300" />
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-black stroke-[3px]" />
               <input
                 type="email"
-                placeholder="you@storerating.com"
-                className={`w-full pl-11 pr-4 py-3 rounded-xl bg-dark-900/50 border ${
-                  errors.email ? 'border-red-500/50 focus:border-red-500' : 'border-dark-800/80 focus:border-brand-500'
-                } text-white text-sm focus:outline-none focus:ring-1 focus:ring-opacity-50 transition-all`}
+                placeholder="YOU@STORERATING.COM"
+                className={`w-full pl-12 pr-4 py-4 border-4 bg-white text-black font-bold uppercase tracking-wider text-base focus:outline-none transition-colors ${
+                  errors.email ? 'border-neo-accent focus:bg-neo-accent/10' : 'border-black focus:bg-neo-secondary focus:shadow-neo-sm'
+                }`}
                 {...register('email', {
                   required: 'Email is required',
                   pattern: {
@@ -88,35 +89,35 @@ export const Login: React.FC = () => {
                 })}
               />
             </div>
-            {errors.email && <span className="text-[11px] text-red-400 font-medium">{errors.email.message}</span>}
+            {errors.email && <span className="text-sm text-white bg-black font-bold uppercase tracking-wider px-2 py-1 inline-block mt-1">{errors.email.message}</span>}
           </div>
 
           {/* Password field */}
-          <div className="space-y-1">
-            <label className="text-xs font-semibold text-dark-200 uppercase tracking-wider block">Password</label>
+          <div className="space-y-2">
+            <label className="text-sm font-black text-black uppercase tracking-widest block bg-white w-max px-1 -mb-4 relative z-10 ml-3">Password</label>
             <div className="relative">
-              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-dark-300" />
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-black stroke-[3px]" />
               <input
                 type="password"
                 placeholder="••••••••"
-                className={`w-full pl-11 pr-4 py-3 rounded-xl bg-dark-900/50 border ${
-                  errors.password ? 'border-red-500/50 focus:border-red-500' : 'border-dark-800/80 focus:border-brand-500'
-                } text-white text-sm focus:outline-none focus:ring-1 focus:ring-opacity-50 transition-all`}
+                className={`w-full pl-12 pr-4 py-4 border-4 bg-white text-black font-bold tracking-widest text-lg focus:outline-none transition-colors ${
+                  errors.password ? 'border-neo-accent focus:bg-neo-accent/10' : 'border-black focus:bg-neo-secondary focus:shadow-neo-sm'
+                }`}
                 {...register('password', { required: 'Password is required' })}
               />
             </div>
-            {errors.password && <span className="text-[11px] text-red-400 font-medium">{errors.password.message}</span>}
+            {errors.password && <span className="text-sm text-white bg-black font-bold uppercase tracking-wider px-2 py-1 inline-block mt-1">{errors.password.message}</span>}
           </div>
 
           {/* Submit button */}
           <button
             type="submit"
             disabled={submitting}
-            className="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 disabled:bg-brand-600/50 text-white font-semibold text-sm transition-all duration-200 shadow-lg shadow-brand-600/20 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full py-4 border-4 border-black bg-neo-secondary hover:bg-neo-accent text-black font-black uppercase tracking-widest text-lg transition-all duration-100 shadow-neo-md active:translate-x-2 active:translate-y-2 active:shadow-none flex items-center justify-center gap-3 cursor-pointer mt-8"
           >
             {submitting ? (
               <>
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2 className="h-6 w-6 stroke-[3px] animate-spin" />
                 Signing In...
               </>
             ) : (
@@ -126,10 +127,10 @@ export const Login: React.FC = () => {
         </form>
 
         {/* Footer options */}
-        <div className="mt-8 pt-6 border-t border-dark-800/40 text-center">
-          <p className="text-sm text-dark-300">
+        <div className="mt-10 pt-6 border-t-4 border-black text-center">
+          <p className="text-base font-bold text-black uppercase tracking-wider">
             Don't have an account?{' '}
-            <Link to="/register" className="font-semibold text-brand-400 hover:text-brand-300 hover:underline">
+            <Link to="/register" className="inline-block mt-2 bg-neo-secondary px-3 py-1 border-2 border-black hover:bg-neo-accent transition-colors shadow-neo-sm hover:-translate-y-1">
               Create one now
             </Link>
           </p>
