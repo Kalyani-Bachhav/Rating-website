@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShieldOff, ArrowLeft, Home, Star } from 'lucide-react';
+import { ShieldOff, ArrowLeft, Home } from 'lucide-react';
 
 export const Unauthorized: React.FC = () => {
   const navigate = useNavigate();
